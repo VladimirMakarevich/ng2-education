@@ -1,10 +1,64 @@
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  NbAuthComponent,
+  NbLoginComponent,
+  NbLogoutComponent,
+  NbRegisterComponent,
+  NbRequestPasswordComponent,
+  NbResetPasswordComponent,
+} from '@nebular/auth';
+import { ThemeGuard } from "../@core/guards/theme.guard";
 
-const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: 'pages',
+    canActivate: [ThemeGuard],
+    loadChildren: () => import('./pages/pages.module')
+      .then(m => m.PagesModule),
+  },
+  // {
+  //   path: 'auth',
+  //   component: NbAuthComponent,
+  //   canActivate: [ThemeGuard],
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: NbLoginComponent,
+  //     },
+  //     {
+  //       path: 'login',
+  //       component: NbLoginComponent,
+  //     },
+  //     {
+  //       path: 'register',
+  //       component: NbRegisterComponent,
+  //     },
+  //     {
+  //       path: 'logout',
+  //       component: NbLogoutComponent,
+  //     },
+  //     {
+  //       path: 'request-password',
+  //       component: NbRequestPasswordComponent,
+  //     },
+  //     {
+  //       path: 'reset-password',
+  //       component: NbResetPasswordComponent,
+  //     },
+  //   ],
+  // },
+  { path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: 'pages/dashboard' },
+];
+
+const config: ExtraOptions = {
+  useHash: false,
+};
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, config)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
