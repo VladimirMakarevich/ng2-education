@@ -26,7 +26,9 @@ export class PagesComponent implements OnInit, OnDestroy {
   menu = MENU_ITEMS;
 
   ngOnInit() {
+    // @ts-ignore
     if (window['dataLayer']) {
+      // @ts-ignore
       window['dataLayer'].push({'event': 'optimize.activate'});
     }
 

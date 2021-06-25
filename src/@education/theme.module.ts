@@ -3,44 +3,38 @@ import { CommonModule } from '@angular/common';
 import { MatRippleModule } from '@angular/material/core';
 import {
   NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbContextMenuModule,
+  NbIconModule,
   NbLayoutModule,
   NbMenuModule,
   NbSearchModule,
-  NbSidebarModule,
-  NbUserModule,
-  NbContextMenuModule,
-  NbButtonModule,
   NbSelectModule,
-  NbIconModule,
+  NbSidebarModule,
   NbThemeModule,
-  NbCardModule,
+  NbUserModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
 
 import {
+  CallActionCardComponent,
   FooterComponent,
   HeaderComponent,
-  SearchInputComponent,
-  TinyMCEComponent,
-  CallActionCardComponent,
-  ToggleSettingsButtonComponent,
   LayoutDirectionSwitcherComponent,
+  SearchInputComponent,
   SwitcherComponent,
   ThemeSettingsComponent,
+  TinyMCEComponent,
+  ToggleSettingsButtonComponent,
 } from './components';
-import {
-  CapitalizePipe,
-  PluralPipe,
-  RoundPipe,
-  TimingPipe,
-  NumberWithCommasPipe,
-} from './pipes';
+import { CapitalizePipe, NumberWithCommasPipe, PluralPipe, RoundPipe, TimingPipe, } from './pipes';
 import {
   OneColumnLayoutComponent,
+  SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-  SampleLayoutComponent,
 } from './layouts';
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
@@ -101,7 +95,7 @@ export class ThemeModule {
           {
             name: 'default',
           },
-          [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME, MATERIAL_LIGHT_THEME, MATERIAL_DARK_THEME ],
+          [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME, MATERIAL_LIGHT_THEME, MATERIAL_DARK_THEME],
         ).providers,
       ],
     };

@@ -1,13 +1,5 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import {
-  NbAuthComponent,
-  NbLoginComponent,
-  NbLogoutComponent,
-  NbRegisterComponent,
-  NbRequestPasswordComponent,
-  NbResetPasswordComponent,
-} from '@nebular/auth';
 import { ThemeGuard } from "../@core/guards/theme.guard";
 
 export const routes: Routes = [
@@ -48,8 +40,8 @@ export const routes: Routes = [
   //     },
   //   ],
   // },
-  { path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages/dashboard' },
+  {path: '', redirectTo: 'pages/dashboard', pathMatch: 'full'},
+  {path: '**', redirectTo: 'pages/dashboard'},
 ];
 
 const config: ExtraOptions = {
