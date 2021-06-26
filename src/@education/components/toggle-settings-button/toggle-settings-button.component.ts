@@ -1,8 +1,8 @@
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
-import { StateService } from '../../../@core/utils';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
+import { StateService } from "../../../@core/services/state.service";
 
 @Component({
   selector: 'ngx-toggle-settings-button',
@@ -17,18 +17,24 @@ export class ToggleSettingsButtonComponent implements OnInit, OnDestroy {
 
   protected destroy$ = new Subject<void>();
 
-  enablePulse = true;
+  public enablePulse = true;
 
-  @HostBinding('class.position-start') positionStart = false;
-  @HostBinding('class.position-end') positionEnd = false;
-  @HostBinding('class.expanded') expanded = false;
+  @HostBinding('class.position-start')
+  public positionStart = false;
 
-  constructor(
+  @HostBinding('class.position-end')
+  public positionEnd = false;
+
+  @HostBinding('class.expanded')
+  public expanded = false;
+
+  public constructor(
     protected sidebarService: NbSidebarService,
-    protected stateService: StateService,
-  ) {}
+    protected stateService: StateService
+  ) {
+  }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.stateService.onSidebarState()
       .pipe(
         map(sidebar => sidebar.id !== 'end'),
@@ -40,14 +46,15 @@ export class ToggleSettingsButtonComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  toggleSettings() {
+  public toggleSettings(): void {
     this.sidebarService.toggle(false, 'settings-sidebar');
     this.expanded = !this.expanded;
     this.enablePulse = false;
   }
+
 }

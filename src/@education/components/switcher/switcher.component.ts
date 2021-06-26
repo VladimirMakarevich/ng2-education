@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ngx-switcher',
@@ -23,36 +23,44 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   `,
 })
 export class SwitcherComponent {
-  @Input() firstValue: any;
-  @Input() secondValue: any;
+  @Input()
+  public firstValue: any;
+  @Input()
+  public secondValue: any;
 
-  @Input() firstValueLabel: string;
-  @Input() secondValueLabel: string;
+  @Input()
+  public firstValueLabel: string;
+  @Input()
+  public secondValueLabel: string;
 
-  @Input() vertical: boolean;
+  @Input()
+  public vertical: boolean;
 
-  @Input() value: any;
-  @Output() valueChange = new EventEmitter<any>();
+  @Input()
+  public value: any;
+  @Output()
+  public valueChange = new EventEmitter<any>();
 
-  isFirstValue() {
+  public isFirstValue(): boolean {
     return this.value === this.firstValue;
   }
 
-  isSecondValue() {
+  public isSecondValue(): boolean {
     return this.value === this.secondValue;
   }
 
-  currentValueLabel() {
+  public currentValueLabel(): string {
     return this.isFirstValue()
       ? this.firstValueLabel
       : this.secondValueLabel;
   }
 
-  changeValue() {
+  public changeValue(): void {
     this.value = this.isFirstValue()
       ? this.secondValue
       : this.firstValue;
 
     this.valueChange.emit(this.value);
   }
+
 }

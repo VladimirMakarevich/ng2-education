@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { delay, withLatestFrom, takeUntil } from 'rxjs/operators';
+import { delay, takeUntil, withLatestFrom } from 'rxjs/operators';
 import {
   NbLayoutComponent,
   NbMediaBreakpoint,
@@ -10,8 +10,7 @@ import {
   NbSidebarService,
   NbThemeService,
 } from '@nebular/theme';
-
-import { StateService } from '../../../@core/utils';
+import { StateService } from "../../../@core/services/state.service";
 
 @Component({
   selector: 'ngx-sample-layout',
@@ -60,7 +59,7 @@ export class SampleLayoutComponent implements OnInit, OnDestroy {
 
   protected destroy$ = new Subject<void>();
 
-  subMenu: NbMenuItem[] = [
+  public subMenu: NbMenuItem[] = [
     {
       title: 'PAGE LEVEL MENU',
       group: true,
@@ -101,22 +100,26 @@ export class SampleLayoutComponent implements OnInit, OnDestroy {
       link: '/pages/ui-features/tabs',
     },
   ];
-  layout: any = {};
-  sidebar: any = {};
 
-  currentTheme: string;
+  public layout: any = {};
+  public sidebar: any = {};
 
-  @ViewChild(NbLayoutComponent, { static: false }) layoutComponent: NbLayoutComponent;
+  public currentTheme: string;
 
-  constructor(protected stateService: StateService,
-              protected menuService: NbMenuService,
-              protected themeService: NbThemeService,
-              protected bpService: NbMediaBreakpointsService,
-              protected sidebarService: NbSidebarService,
-              @Inject(PLATFORM_ID) protected platformId,
-  ) {}
+  @ViewChild(NbLayoutComponent, {static: false})
+  public layoutComponent: NbLayoutComponent;
 
-  ngOnInit() {
+  public constructor(
+    protected stateService: StateService,
+    protected menuService: NbMenuService,
+    protected themeService: NbThemeService,
+    protected bpService: NbMediaBreakpointsService,
+    protected sidebarService: NbSidebarService,
+    @Inject(PLATFORM_ID) protected platformId
+  ) {
+  }
+
+  public ngOnInit(): void {
     this.stateService.onLayoutState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(layout => this.layout = layout);
@@ -144,16 +147,17 @@ export class SampleLayoutComponent implements OnInit, OnDestroy {
       .subscribe(theme => this.currentTheme = theme.name);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  isMenuSidebarPositionEnd(): boolean {
+  public isMenuSidebarPositionEnd(): boolean {
     return this.sidebar.id === 'end';
   }
 
-  isSettingsSidebarPositionEnd(): boolean {
+  public isSettingsSidebarPositionEnd(): boolean {
     return !this.isMenuSidebarPositionEnd();
   }
+
 }

@@ -1,7 +1,6 @@
-import { Component, OnDestroy, Input } from '@angular/core';
-import { NbLayoutDirectionService, NbLayoutDirection } from '@nebular/theme';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { NbLayoutDirection, NbLayoutDirectionService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators';
-import { AnalyticsService } from '../../../@core/utils/analytics.service';
 
 @Component({
   selector: 'ngx-layout-direction-switcher',
@@ -18,14 +17,16 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
   `,
 })
 export class LayoutDirectionSwitcherComponent implements OnDestroy {
-  directions = NbLayoutDirection;
-  currentDirection: NbLayoutDirection;
-  alive = true;
+  public directions = NbLayoutDirection;
+  public currentDirection: NbLayoutDirection;
+  public alive = true;
 
-  @Input() vertical: boolean = false;
+  @Input()
+  public vertical: boolean = false;
 
-  constructor(private directionService: NbLayoutDirectionService,
-              private analyticsService: AnalyticsService) {
+  public constructor(
+    private directionService: NbLayoutDirectionService
+  ) {
     this.currentDirection = this.directionService.getDirection();
 
     this.directionService.onDirectionChange()
@@ -33,13 +34,12 @@ export class LayoutDirectionSwitcherComponent implements OnDestroy {
       .subscribe(newDirection => this.currentDirection = newDirection);
   }
 
-  toggleDirection(newDirection) {
+  public toggleDirection(newDirection): void {
     this.directionService.setDirection(newDirection);
-
-    this.analyticsService.trackEvent('toggleDirection', newDirection);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.alive = false;
   }
+
 }

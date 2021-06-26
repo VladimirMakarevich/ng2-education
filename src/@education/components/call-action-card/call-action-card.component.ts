@@ -30,27 +30,32 @@ export class CallActionCardComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  @Input() title: string;
-  @Input() type: string;
-  @Input() link: string;
-  @Input() linkTitle: string;
+  @Input()
+  public title: string;
+  @Input()
+  public type: string;
+  @Input()
+  public link: string;
+  @Input()
+  public linkTitle: string;
 
-  currentTheme: string;
-  buttonSize: NbComponentSize;
+  public currentTheme: string;
+  public buttonSize: NbComponentSize;
 
-  constructor(
+  public constructor(
     private themeService: NbThemeService,
     private breakpointService: NbMediaBreakpointsService,
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.themeService.getJsTheme()
       .pipe(takeUntil(this.destroy$))
       .subscribe(theme => {
         this.currentTheme = theme.name;
       });
 
-    const { xxl } = this.breakpointService.getBreakpointsMap();
+    const {xxl} = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
         map(([, currentBreakpoint]) => currentBreakpoint.width < xxl),
@@ -63,16 +68,20 @@ export class CallActionCardComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  getButtonStatus(): NbComponentStatus {
+  public getButtonStatus(): NbComponentStatus {
     switch (this.currentTheme) {
-      case 'cosmic': return 'primary';
-      case 'corporate': return 'warning';
-      default: return 'danger';
+      case 'cosmic':
+        return 'primary';
+      case 'corporate':
+        return 'warning';
+      default:
+        return 'danger';
     }
   }
+  
 }

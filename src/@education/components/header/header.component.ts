@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
 import { UserData } from '../../../@core/data/users';
-import { AnalyticsService, LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
-import { Subject, Observable } from 'rxjs';
-import { RippleService } from '../../../@core/utils/ripple.service';
-import {CurrentThemeService} from '../../../@core/utils/theme.service';
+import { Observable, Subject } from 'rxjs';
+import { RippleService } from "../../../@core/services/ripple.service";
+import { CurrentThemeService } from "../../../@core/services/theme.service";
+import { LayoutService } from "../../../@core/services/layout.service";
 
 @Component({
   selector: 'ngx-header',
@@ -17,10 +17,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
   public materialTheme$: Observable<boolean>;
-  userPictureOnly: boolean = false;
-  user: any;
+  public userPictureOnly: boolean = false;
+  public user: any;
 
-  themes = [
+  public themes = [
     {
       value: 'default',
       name: 'Light',
@@ -47,9 +47,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     },
   ];
 
-  currentTheme = 'default';
+  public currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  public userMenu = [{title: 'Profile'}, {title: 'Log out'}];
 
   public constructor(
     private sidebarService: NbSidebarService,
@@ -59,7 +59,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private rippleService: RippleService,
-    private analytics: AnalyticsService,
     private currentThemeService: CurrentThemeService,
   ) {
     this.materialTheme$ = new Observable(subscriber => {
@@ -69,14 +68,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => this.user = users.nick);
 
-    const { xl } = this.breakpointService.getBreakpointsMap();
+    const {xl} = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
         map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
@@ -86,7 +85,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.themeService.onThemeChange()
       .pipe(
-        map(({ name }) => name),
+        map(({name}) => name),
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => {
@@ -95,12 +94,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  changeTheme(themeName: string) {
+  public changeTheme(themeName: string): void {
     this.currentThemeService.setCurrentTheme(themeName);
     this.themeService.changeTheme(themeName);
 
@@ -109,23 +108,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  toggleSidebar(): boolean {
+  public toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
     this.layoutService.changeLayoutSize();
 
     return false;
   }
 
-  navigateHome() {
+  public navigateHome(): boolean {
     this.menuService.navigateHome();
     return false;
   }
 
-  startSearch() {
-    this.analytics.trackEvent('startSearch');
+  public startSearch(): void {
   }
 
-  trackEmailClick() {
-    this.analytics.trackEvent('clickContactEmail', 'click');
+  public trackEmailClick(): void {
   }
+
 }
