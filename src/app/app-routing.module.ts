@@ -5,7 +5,7 @@ import { ThemeGuard } from "../@core/guards/theme.guard";
 export const routes: Routes = [
   {
     path: 'pages',
-    canActivate: [ThemeGuard],
+    // canActivate: [ThemeGuard],
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },

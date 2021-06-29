@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'ngx-search-input',
+  selector: 'app-search-input',
   styleUrls: ['./search-input.component.scss'],
   template: `
     <i class="control-icon ion ion-ios-search"
@@ -32,8 +32,9 @@ export class SearchInputComponent {
     this.isInputShown = false;
   }
 
-  public onInput(val: string): void {
-    this.search.emit(val);
+  public onInput(event: any): void {
+    const value = event as string;
+    this.search.emit(value);
   }
 
 }

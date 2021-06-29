@@ -7,25 +7,27 @@ import { Subject } from 'rxjs';
 import { MetadataService } from "../../@core/services/metadata.service";
 
 @Component({
-  selector: 'ngx-pages',
+  selector: 'app-pages',
   styleUrls: ['pages.component.scss'],
   template: `
-    <ngx-sample-layout>
+    <app-sample-layout>
       <nb-menu [items]="menu"></nb-menu>
       <router-outlet></router-outlet>
-    </ngx-sample-layout>
+    </app-sample-layout>
   `,
 })
 export class PagesComponent implements OnInit, OnDestroy {
-  destroy$: Subject<boolean> = new Subject<boolean>();
+  public destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private menuService: NbMenuService,
-              private metaDataService: MetadataService) {
+  public constructor(
+    private menuService: NbMenuService,
+    private metaDataService: MetadataService
+  ) {
   }
 
-  menu = MENU_ITEMS;
+  public menu = MENU_ITEMS;
 
-  ngOnInit() {
+  public ngOnInit(): void {
     // @ts-ignore
     if (window['dataLayer']) {
       // @ts-ignore
@@ -45,7 +47,7 @@ export class PagesComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }

@@ -5,7 +5,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { StateService } from "../../../@core/services/state.service";
 
 @Component({
-  selector: 'ngx-toggle-settings-button',
+  selector: 'app-toggle-settings-button',
   styleUrls: ['./toggle-settings-button.component.scss'],
   template: `
     <button nbButton appearance="outline" class="toggle-settings" (click)="toggleSettings()">

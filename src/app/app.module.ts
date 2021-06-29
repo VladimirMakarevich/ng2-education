@@ -4,34 +4,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
-  NbButtonModule, NbCardModule,
-  NbCheckboxModule,
-  NbIconModule, NbInputModule, NbLayoutModule,
-  NbListModule,
-  NbSelectModule,
-  NbThemeModule
+  NbDatepickerModule,
+  NbDialogModule,
+  NbMenuModule,
+  NbSidebarModule,
+  NbToastrModule,
+  NbWindowModule
 } from "@nebular/theme";
-import { FormsModule } from "@angular/forms";
-import { NbEvaIconsModule } from "@nebular/eva-icons";
+import { CoreModule } from "../@core/core.module";
+import { ThemeModule } from "../@education/theme.module";
+import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    NbThemeModule.forRoot({name: 'default'}),
-    NbLayoutModule,
-    NbEvaIconsModule,
-    NbCardModule,
-    NbInputModule,
-    NbButtonModule,
-    NbIconModule,
-    NbListModule,
-    NbCheckboxModule,
-    NbSelectModule,
-    FormsModule,
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    NbSidebarModule.forRoot(),
+    NbMenuModule.forRoot(),
+    NbDatepickerModule.forRoot(),
+    NbDialogModule.forRoot(),
+    NbWindowModule.forRoot(),
+    NbToastrModule.forRoot(),
+    CoreModule.forRoot(),
+    ThemeModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-footer',
+  selector: 'app-footer',
   styleUrls: ['./footer.component.scss'],
   template: `
     <span class="created-by">
       Created with ♥ by <b><a
       href="https://www.akveo.com?utm_campaign=services%20-%20homepage%20-%20ngx_admin%20demo&utm_source=ngx_admin&utm_medium=referral&utm_content=demo_footer_link"
-      target="_blank">Akveo</a></b> 2019.
+      target="_blank">Akveo</a></b> {{yearUtc}}.
       Made with
       <b>
         <a
@@ -26,4 +26,12 @@ import { Component } from '@angular/core';
   `,
 })
 export class FooterComponent {
+
+  /*
+  get the current year in UTC format
+  */
+  public get yearUtc(): number {
+    return new Date().getUTCFullYear();
+  }
+
 }

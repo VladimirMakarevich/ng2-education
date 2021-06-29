@@ -4,7 +4,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'ngx-call-action-card',
+  selector: 'app-call-action-card',
   styleUrls: ['./call-action-card.component.scss'],
   template: `
     <nb-card>
@@ -83,5 +83,5 @@ export class CallActionCardComponent implements OnInit, OnDestroy {
         return 'danger';
     }
   }
-  
+
 }

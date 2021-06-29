@@ -9,7 +9,7 @@ import { CurrentThemeService } from "../../../@core/services/theme.service";
 import { LayoutService } from "../../../@core/services/layout.service";
 
 @Component({
-  selector: 'ngx-header',
+  selector: 'app-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
 })

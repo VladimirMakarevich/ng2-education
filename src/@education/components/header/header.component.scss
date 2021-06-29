@@ -30,21 +30,8 @@
     line-height: nb-theme(text-subtitle-line-height);
   }
 
-  .downloads-count .number {
-    @include nb-ltr(margin-left, 0.5rem);
-    @include nb-rtl(margin-right, 0.5rem);
-  }
-
   ::ng-deep nb-search button {
     padding: 0 !important;
-  }
-
-  .contact-us {
-    padding: 0;
-
-    nb-icon {
-      font-size: 1.25rem;
-    }
   }
 
   .header-container {
@@ -64,8 +51,9 @@
     }
 
     .logo {
-      padding: 0 1.25rem;
-      font-size: 1.75rem;
+      padding: 0 0.25rem;
+      font-size: 1.45rem;
+      font-weight: bold;
       @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
       @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
       white-space: nowrap;
@@ -92,19 +80,6 @@
       display: none;
     }
 
-    .control-item.github-stars {
-      width: auto;
-
-      iframe {
-        margin: 0;
-      }
-    }
-  }
-
-  @include media-breakpoint-down(lg) {
-    .downloads-count {
-      display: none;
-    }
   }
 
   @include media-breakpoint-down(md) {

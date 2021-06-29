@@ -13,13 +13,13 @@ import {
 import { StateService } from "../../../@core/services/state.service";
 
 @Component({
-  selector: 'ngx-sample-layout',
+  selector: 'app-sample-layout',
   styleUrls: ['./sample.layout.scss'],
   template: `
     <nb-layout [center]="layout.id === 'center-column'" windowMode>
       <nb-layout-header fixed>
-        <ngx-header></ngx-header>
-        <ngx-toggle-settings-button></ngx-toggle-settings-button>
+        <app-header></app-header>
+        <app-toggle-settings-button></app-toggle-settings-button>
       </nb-layout-header>
 
       <nb-sidebar class="menu-sidebar"
@@ -42,7 +42,7 @@ import { StateService } from "../../../@core/services/state.service";
       </nb-layout-column>
 
       <nb-layout-footer fixed>
-        <ngx-footer></ngx-footer>
+        <app-footer></app-footer>
       </nb-layout-footer>
 
       <nb-sidebar class="settings-sidebar"
@@ -50,7 +50,7 @@ import { StateService } from "../../../@core/services/state.service";
                   state="collapsed"
                   fixed
                   [end]="isSettingsSidebarPositionEnd()">
-        <ngx-theme-settings></ngx-theme-settings>
+        <app-theme-settings></app-theme-settings>
       </nb-sidebar>
     </nb-layout>
   `,

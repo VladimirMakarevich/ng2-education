@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { StateService } from "../../../@core/services/state.service";
 
 @Component({
-  selector: 'ngx-theme-settings',
+  selector: 'app-theme-settings',
   styleUrls: ['./theme-settings.component.scss'],
   template: `
     <span class="subheader">Layouts</span>
@@ -32,7 +32,7 @@ import { StateService } from "../../../@core/services/state.service";
     <span class="subheader layout-setting-heading">Layout direction</span>
     <div class="settings-row">
       <div class="switcher">
-        <ngx-layout-direction-switcher></ngx-layout-direction-switcher>
+        <app-layout-direction-switcher></app-layout-direction-switcher>
       </div>
     </div>
   `,

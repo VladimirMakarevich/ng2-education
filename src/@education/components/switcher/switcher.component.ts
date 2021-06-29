@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'ngx-switcher',
+  selector: 'app-switcher',
   styleUrls: ['./switcher.component.scss'],
   template: `
     <label class="switch-label" [class.vertical]="vertical">
