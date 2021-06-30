@@ -89,6 +89,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => {
+        debugger;
         this.currentTheme = themeName;
         this.rippleService.toggle(themeName?.startsWith('material'));
       });
@@ -100,10 +101,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public changeTheme(themeName: string): void {
+    debugger;
     this.currentThemeService.setCurrentTheme(themeName);
     this.themeService.changeTheme(themeName);
 
     this.materialTheme$ = new Observable(subscriber => {
+      debugger;
       subscriber.next(this.currentThemeService.getCurrentTheme().startsWith('material'));
     });
   }
